@@ -1,0 +1,6 @@
+name: notdodo
+runtime:
+  name: python
+  options:
+    toolchain: poetry
+description: Pulumi project to manage `notdodo` public repositories
