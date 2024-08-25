@@ -11,7 +11,3 @@ repository = github.Repository(
     has_wiki=True,
     vulnerability_alerts=True,
 )
-
-repository = github.Repository(
-    "test-removeme",
-)
