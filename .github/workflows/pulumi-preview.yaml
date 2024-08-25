@@ -3,7 +3,7 @@ on:
   pull_request:
 
 concurrency:
-  group: ghas-github-ci-${{ github.ref }}
+  group: ghas-github-pulumi-preview-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
