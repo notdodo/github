@@ -1,6 +1,5 @@
 """Pulumi project to manage `notdodo` public repositories"""
 
-import pulumi
 import pulumi_github as github
 
 # Create a GitHub repository
