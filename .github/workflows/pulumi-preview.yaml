@@ -1,0 +1,51 @@
+name: Pulumi Preview
+on:
+  pull_request:
+
+concurrency:
+  group: ghas-github-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  up:
+    name: Preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        # v4.1.7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f
+        # v5.1.1
+        with:
+          python-version: 3.12
+      - uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9
+        # v4.0.2
+        with:
+          path: ~/.local
+          key: poetry-latest
+      - uses: snok/install-poetry@76e04a911780d5b312d89783f7b1cd627778900a
+        # v1.4.1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      - id: cache-deps
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9
+        # v4.0.2
+        with:
+          path: .venv
+          key: python-3.12-poetry-${{ hashFiles('**/poetry.lock') }}
+      - run: poetry install --no-root
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+      - uses: pulumi/actions@cd99a7f8865434dd3532b586a26f9ebea596894f
+        # v5.5.1
+        with:
+          command: preview
+          stack-name: notdodo/github
+          comment-on-pr: true
+          color: always
+          suppress-progress: true
+          always-include-summary: true
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
