@@ -1,16 +1,14 @@
 .PHONY: format format-check lint install test type-check check help
 
 format: ## Format repository code
-	poetry run black .
-	poetry run isort .
+	poetry run ruff format
+	poetry run ruff check --fix
 
 format-check: ## Check the code format with no actual side effects
-	poetry run black --check .
-	poetry run isort --check .
+	poetry run ruff format --check
 
 lint: ## Launch the linting tools
-	poetry run flake8 .
-	poetry run pylint **/**.py
+	poetry run ruff check
 
 install: ## Install Python dependencies
 	poetry install --no-root
