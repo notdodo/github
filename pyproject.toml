@@ -12,15 +12,31 @@ pulumi = "^3.133.0"
 pulumi-github = "^6.3.0"
 
 [tool.poetry.group.dev.dependencies]
-black = "^24.4.2"
-flake8 = "^7.1.0"
-isort = "^5.13.2"
 mypy = "^1.10.1"
 pydantic = "^2.9.2"
 pylint = "^3.2.7"
+ruff = "^0.6.5"
 
-[tool.isort]
-profile = "black"
+[tool.ruff]
+output-format = "github"
+
+[tool.ruff.lint]
+select = ["C", "E", "F", "W", "I", "UP", "B", "SIM"]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 150
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
