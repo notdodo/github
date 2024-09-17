@@ -39,8 +39,14 @@ jobs:
         with:
           path: .venv
           key: python-3.12-poetry-${{ hashFiles('**/poetry.lock') }}
-      - run: poetry install --no-root
+      - run: poetry install
         if: steps.cache-deps.outputs.cache-hit != 'true'
+
+      - uses: pulumi/auth-actions@v1
+        with:
+          organization: notdodo
+          requested-token-type: urn:pulumi:token-type:access_token:organization
+
       - uses: pulumi/actions@cd99a7f8865434dd3532b586a26f9ebea596894f
         # v5.5.1
         with:
