@@ -44,7 +44,7 @@ jobs:
         if: steps.cache-deps.outputs.cache-hit != 'true'
 
       - name: Checkout actions-oidc-debugger
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: github/actions-oidc-debugger
           ref: main
