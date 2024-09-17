@@ -43,6 +43,18 @@ jobs:
       - run: poetry install
         if: steps.cache-deps.outputs.cache-hit != 'true'
 
+      - name: Checkout actions-oidc-debugger
+        uses: actions/checkout@v3
+        with:
+          repository: github/actions-oidc-debugger
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./.github/actions/actions-oidc-debugger
+      - name: Debug OIDC Claims
+        uses: ./.github/actions/actions-oidc-debugger
+        with:
+          audience: "${{ github.server_url }}/${{ github.repository_owner }}"
+
       - uses: pulumi/auth-actions@80dec0d5e009a11565cbf87d9ef9103fc7d24198
         # v1.0.0
         with:
