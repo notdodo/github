@@ -11,6 +11,3 @@ repository = github.Repository(
     has_wiki=True,
     vulnerability_alerts=True,
 )
-
-this
-jio
