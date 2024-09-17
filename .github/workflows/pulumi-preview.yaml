@@ -7,7 +7,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  up:
+  python-ci:
+    uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.2
+    with:
+      poetry-version: latest
+      python-version: 3.12
+
+  preview:
     name: Preview
     runs-on: ubuntu-latest
     permissions:
