@@ -15,6 +15,7 @@ jobs:
 
   preview:
     name: Preview
+    needs: python-ci
     runs-on: ubuntu-latest
     permissions:
       contents: read

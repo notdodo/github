@@ -17,6 +17,7 @@ jobs:
 
   up:
     name: Up
+    needs: python-ci
     runs-on: ubuntu-latest
     environment: main
     permissions:
