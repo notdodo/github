@@ -69,6 +69,14 @@ jobs:
           requested-token-type: urn:pulumi:token-type:access_token:personal
           scope: user:notdodo
 
+      - uses: actions/cache@v4
+        id: cache-pulumi
+        with:
+          path: ~/.pulumi/plugins
+          key: python-3.12-pulumi-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            python-3.12-pulumi-
+
       - uses: pulumi/actions@cd99a7f8865434dd3532b586a26f9ebea596894f
         # v5.5.1
         with:
