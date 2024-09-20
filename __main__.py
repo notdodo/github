@@ -4,6 +4,7 @@ import pulumi_github as github
 
 github.Repository(
     "github",
+    name="github",
     has_downloads=True,
     has_issues=True,
     has_projects=True,
