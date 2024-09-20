@@ -13,6 +13,7 @@ github.Repository(
 
 github.Repository(
     "erfiume-bot",
+    name="erfiume_bot",
     has_downloads=True,
     has_issues=True,
     has_projects=False,
