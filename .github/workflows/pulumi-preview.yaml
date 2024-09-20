@@ -49,26 +49,12 @@ jobs:
           key: python-3.12-poetry-${{ hashFiles('**/poetry.lock') }}
       - run: poetry install
         if: steps.cache-deps.outputs.cache-hit != 'true'
-
-      - name: Checkout actions-oidc-debugger
-        uses: actions/checkout@v4
-        with:
-          repository: github/actions-oidc-debugger
-          ref: main
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: ./.github/actions/actions-oidc-debugger
-      - name: Debug OIDC Claims
-        uses: ./.github/actions/actions-oidc-debugger
-        with:
-          audience: "${{ github.server_url }}/${{ github.repository_owner }}"
-
       - uses: pulumi/auth-actions@80dec0d5e009a11565cbf87d9ef9103fc7d24198
         # v1.0.0
         with:
           organization: notdodo
           requested-token-type: urn:pulumi:token-type:access_token:personal
           scope: user:notdodo
-
       - uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9
         # v4.0.2
         with:
@@ -76,7 +62,6 @@ jobs:
           key: python-3.12-pulumi-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
             python-3.12-pulumi-
-
       - uses: pulumi/actions@cd99a7f8865434dd3532b586a26f9ebea596894f
         # v5.5.1
         with:
