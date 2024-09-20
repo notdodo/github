@@ -21,8 +21,8 @@ ruff = "^0.6.5"
 output-format = "github"
 
 [tool.ruff.lint]
-select = ["C", "E", "F", "W", "I", "UP", "B", "SIM"]
-ignore = []
+select = ["ALL"]
+ignore = ["D2", "D4", "ANN", "COM812", "ISC001"]
 fixable = ["ALL"]
 unfixable = []
 

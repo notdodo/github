@@ -2,12 +2,21 @@
 
 import pulumi_github as github
 
-# Create a GitHub repository
-repository = github.Repository(
+github.Repository(
     "github",
     has_downloads=True,
     has_issues=True,
     has_projects=True,
     has_wiki=True,
     vulnerability_alerts=True,
+)
+
+github.Repository(
+    "erfiume-bot",
+    has_downloads=True,
+    has_issues=True,
+    has_projects=False,
+    has_wiki=False,
+    vulnerability_alerts=True,
+    allow_squash_merge=True,
 )
