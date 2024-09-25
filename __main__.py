@@ -17,9 +17,9 @@ oidc_sub_customization_template = (
         repository=github_repo.name,
         use_default=False,
         include_claim_keys=[
-            "actor",
+            "repo",
             "context",
-            "repository_owner",
+            "job_workflow_ref",
         ],
     )
 )
@@ -40,9 +40,9 @@ oidc_sub_customization_template = (
         repository=erfiume_repo.name,
         use_default=False,
         include_claim_keys=[
-            "actor",
+            "repo",
             "context",
-            "repository_owner",
+            "job_workflow_ref",
         ],
     )
 )
