@@ -13,7 +13,7 @@ github_repo = github.Repository(
 )
 oidc_sub_customization_template = (
     github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
-        f"{github_repo.name}-oidc-sub-customization",
+        f"github-repo-oidc-sub-customization",
         repository=github_repo.name,
         use_default=False,
         include_claim_keys=[
@@ -36,7 +36,7 @@ erfiume_repo = github.Repository(
 )
 oidc_sub_customization_template = (
     github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
-        f"{erfiume_repo.name}-oidc-sub-customization",
+        "erfiume-repo-oidc-sub-customization",
         repository=erfiume_repo.name,
         use_default=False,
         include_claim_keys=[
