@@ -8,8 +8,8 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
-pulumi = "^3.137.0"
-pulumi-github = "^6.3.2"
+pulumi = "^3.142.0"
+pulumi-github = "^6.4.0"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.13.0"
