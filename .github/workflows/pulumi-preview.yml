@@ -69,6 +69,5 @@ jobs:
           stack-name: notdodo/github
           comment-on-pr: true
           color: always
-          message: aa
           suppress-progress: true
           always-include-summary: true
