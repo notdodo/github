@@ -10,10 +10,12 @@ concurrency:
 
 jobs:
   python-ci:
-    uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.4
+    uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.1
     with:
       poetry-version: latest
-      python-version: 3.12
+      python-version: 3.13
+      egress-policy-allowlist: >
+        objects.githubusercontent.com
 
   up:
     name: Up
@@ -27,10 +29,6 @@ jobs:
         # v4.2.2
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b
-        # v5.3.0
-        with:
-          python-version: 3.12
       - uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a
         # v4.1.2
         with:
@@ -42,14 +40,14 @@ jobs:
           virtualenvs-create: true
           virtualenvs-in-project: true
           installer-parallel: true
-      - id: cache-deps
-        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a
-        # v4.1.2
+      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b
+        # v5.3.0
+        id: install-python
         with:
-          path: .venv
-          key: python-3.12-poetry-${{ hashFiles('**/poetry.lock') }}
-      - run: poetry install --no-root
-        if: steps.cache-deps.outputs.cache-hit != 'true'
+          python-version: 3.13
+          cache: "poetry"
+      - run: poetry install
+        if: steps.install-python.outputs.cache-hit != 'true'
       - uses: pulumi/auth-actions@80dec0d5e009a11565cbf87d9ef9103fc7d24198
         # v1.0.0
         with:

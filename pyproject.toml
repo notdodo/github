@@ -12,7 +12,7 @@ pulumi = "^3.142.0"
 pulumi-github = "^6.4.0"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.13.0"
+mypy = { extras = ["faster-cache"], version = "^1.14.0" }
 pydantic = "^2.10.2"
 pylint = "^3.3.1"
 ruff = "^0.8.1"
@@ -22,7 +22,7 @@ output-format = "github"
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["D2", "D4", "ANN", "COM812", "ISC001"]
+ignore = ["D2", "D4", "ANN", "COM812", "ISC001", "ERA001"]
 fixable = ["ALL"]
 unfixable = []
 
