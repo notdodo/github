@@ -11,7 +11,7 @@ jobs:
     uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.1
     with:
       poetry-version: latest
-      python-version: 3.12
+      python-version: 3.13
 
   preview:
     name: Preview
@@ -41,7 +41,7 @@ jobs:
         # v5.3.0
         id: install-python
         with:
-          python-version: 3.12
+          python-version: 3.13
           cache: "poetry"
           check-latest: true
       # - id: cache-deps
