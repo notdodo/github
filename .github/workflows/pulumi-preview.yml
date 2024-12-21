@@ -12,6 +12,8 @@ jobs:
     with:
       poetry-version: latest
       python-version: 3.13
+      egress-policy-allowlist: >
+        objects.githubusercontent.com
 
   preview:
     name: Preview
