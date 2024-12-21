@@ -28,8 +28,11 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b
         # v5.3.0
+        id: install-python
         with:
           python-version: 3.12
+          cache: "poetry"
+          check-latest: true
       - uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a
         # v4.1.2
         with:
@@ -41,14 +44,14 @@ jobs:
           virtualenvs-create: true
           virtualenvs-in-project: true
           installer-parallel: true
-      - id: cache-deps
-        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a
-        # v4.1.2
-        with:
-          path: .venv
-          key: python-3.12-poetry-${{ hashFiles('**/poetry.lock') }}
+      # - id: cache-deps
+      #   uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a
+      #   # v4.1.2
+      #   with:
+      #     path: .venv
+      #     key: python-3.12-poetry-${{ hashFiles('**/poetry.lock') }}
       - run: poetry install
-        if: steps.cache-deps.outputs.cache-hit != 'true'
+        if: steps.install-python.outputs.cache-hit != 'true'
       - uses: pulumi/auth-actions@80dec0d5e009a11565cbf87d9ef9103fc7d24198
         # v1.0.0
         with:
