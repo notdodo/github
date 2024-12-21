@@ -45,7 +45,6 @@ jobs:
         with:
           python-version: 3.13
           cache: "poetry"
-          check-latest: true
       - run: poetry install
         if: steps.install-python.outputs.cache-hit != 'true'
       - uses: pulumi/auth-actions@80dec0d5e009a11565cbf87d9ef9103fc7d24198
