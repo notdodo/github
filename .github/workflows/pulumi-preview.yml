@@ -46,12 +46,6 @@ jobs:
           python-version: 3.13
           cache: "poetry"
           check-latest: true
-      # - id: cache-deps
-      #   uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a
-      #   # v4.1.2
-      #   with:
-      #     path: .venv
-      #     key: python-3.12-poetry-${{ hashFiles('**/poetry.lock') }}
       - run: poetry install
         if: steps.install-python.outputs.cache-hit != 'true'
       - uses: pulumi/auth-actions@80dec0d5e009a11565cbf87d9ef9103fc7d24198
