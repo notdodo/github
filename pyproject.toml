@@ -1,9 +1,14 @@
 [tool.poetry]
 name = "github"
 version = "0.1.0"
-description = ""
+description = "A project for managing GitHub resources with Pulumi."
 authors = ["Edoardo Rosa <6991986+notdodo@users.noreply.github.com>"]
 readme = "README.md"
+license = "MIT"
+keywords = ["pulumi", "github", "cloud", "infrastructure-as-code"]
+repository = "https://github.com/notdodo/github"
+homepage = "https://github.com/notdodo/github"
+documentation = "https://github.com/notdodo/github/blob/main/README.md"
 package-mode = false
 
 [tool.poetry.dependencies]
@@ -21,10 +26,10 @@ ruff = "^0.8.1"
 output-format = "github"
 
 [tool.ruff.lint]
-select = ["ALL"]
-ignore = ["D2", "D4", "ANN", "COM812", "ISC001", "ERA001"]
 fixable = ["ALL"]
 unfixable = []
+select = ["ALL"]
+ignore = ["D2", "D4", "ANN", "COM812", "ISC001", "ERA001"]
 
 [tool.ruff.format]
 docstring-code-format = true
@@ -45,6 +50,7 @@ pretty = true
 show_error_codes = true
 show_error_context = true
 implicit_reexport = true
+namespace_packages = true
 
 [tool.pylint."MESSAGES CONTROL"]
 persistent = "no"
