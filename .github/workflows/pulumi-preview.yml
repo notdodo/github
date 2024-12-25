@@ -8,12 +8,10 @@ concurrency:
 
 jobs:
   python-ci:
-    uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.1
+    uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.2
     with:
       poetry-version: latest
       python-version: 3.13
-      egress-policy-allowlist: >
-        objects.githubusercontent.com
 
   preview:
     name: Preview
