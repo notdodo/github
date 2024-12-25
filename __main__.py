@@ -1,13 +1,11 @@
 """Pulumi project to manage `notdodo` public repositories"""
 
-import pulumi
 import pulumi_github as github
 
 from notdodo_github import PublicRepository
 
 github_repo = PublicRepository(
     name="github",
-    default_oidc_claims=False,
     oidc_claims=[
         "repo",
         "context",
@@ -57,15 +55,17 @@ gha_repo = github.Repository(
     # vulnerability_alerts=True,
     # allow_squash_merge=True,
 )
-oidc_sub_customization_template = github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
-    f"{name}-repo-oidc-sub-customization",
-    repository=gha_repo.name,
-    use_default=True,
-    # include_claim_keys=[
-    #     "repo",
-    #     "context",
-    #     "job_workflow_ref",
-    # ],
+oidc_sub_customization_template = (
+    github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
+        f"{name}-repo-oidc-sub-customization",
+        repository=gha_repo.name,
+        use_default=True,
+        # include_claim_keys=[
+        #     "repo",
+        #     "context",
+        #     "job_workflow_ref",
+        # ],
+    )
 )
 
 
@@ -89,15 +89,17 @@ notdodo_repo = github.Repository(
     # vulnerability_alerts=True,
     # allow_squash_merge=True,
 )
-oidc_sub_customization_template = github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
-    f"{name}-repo-oidc-sub-customization",
-    repository=notdodo_repo.name,
-    use_default=True,
-    # include_claim_keys=[
-    #     "repo",
-    #     "context",
-    #     "job_workflow_ref",
-    # ],
+oidc_sub_customization_template = (
+    github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
+        f"{name}-repo-oidc-sub-customization",
+        repository=notdodo_repo.name,
+        use_default=True,
+        # include_claim_keys=[
+        #     "repo",
+        #     "context",
+        #     "job_workflow_ref",
+        # ],
+    )
 )
 
 
@@ -128,15 +130,17 @@ pulumi_k8s_repo = github.Repository(
     # vulnerability_alerts=True,
     # allow_squash_merge=True,
 )
-oidc_sub_customization_template = github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
-    f"{name}-repo-oidc-sub-customization",
-    repository=pulumi_k8s_repo.name,
-    use_default=True,
-    # include_claim_keys=[
-    #     "repo",
-    #     "context",
-    #     "job_workflow_ref",
-    # ],
+oidc_sub_customization_template = (
+    github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
+        f"{name}-repo-oidc-sub-customization",
+        repository=pulumi_k8s_repo.name,
+        use_default=True,
+        # include_claim_keys=[
+        #     "repo",
+        #     "context",
+        #     "job_workflow_ref",
+        # ],
+    )
 )
 
 
@@ -160,15 +164,17 @@ sparktrail_repo = github.Repository(
     # vulnerability_alerts=True,
     # allow_squash_merge=True,
 )
-oidc_sub_customization_template = github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
-    f"{name}-repo-oidc-sub-customization",
-    repository=sparktrail_repo.name,
-    use_default=True,
-    # include_claim_keys=[
-    #     "repo",
-    #     "context",
-    #     "job_workflow_ref",
-    # ],
+oidc_sub_customization_template = (
+    github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
+        f"{name}-repo-oidc-sub-customization",
+        repository=sparktrail_repo.name,
+        use_default=True,
+        # include_claim_keys=[
+        #     "repo",
+        #     "context",
+        #     "job_workflow_ref",
+        # ],
+    )
 )
 
 name = "tools"
@@ -191,15 +197,17 @@ tools_repo = github.Repository(
     # vulnerability_alerts=True,
     # allow_squash_merge=True,
 )
-oidc_sub_customization_template = github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
-    f"{name}-repo-oidc-sub-customization",
-    repository=tools_repo.name,
-    use_default=True,
-    # include_claim_keys=[
-    #     "repo",
-    #     "context",
-    #     "job_workflow_ref",
-    # ],
+oidc_sub_customization_template = (
+    github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
+        f"{name}-repo-oidc-sub-customization",
+        repository=tools_repo.name,
+        use_default=True,
+        # include_claim_keys=[
+        #     "repo",
+        #     "context",
+        #     "job_workflow_ref",
+        # ],
+    )
 )
 
 name = "bingokta"
@@ -222,15 +230,17 @@ bingokta_repo = github.Repository(
     # vulnerability_alerts=True,
     # allow_squash_merge=True,
 )
-oidc_sub_customization_template = github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
-    f"{name}-repo-oidc-sub-customization",
-    repository=bingokta_repo.name,
-    use_default=True,
-    # include_claim_keys=[
-    #     "repo",
-    #     "context",
-    #     "job_workflow_ref",
-    # ],
+oidc_sub_customization_template = (
+    github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
+        f"{name}-repo-oidc-sub-customization",
+        repository=bingokta_repo.name,
+        use_default=True,
+        # include_claim_keys=[
+        #     "repo",
+        #     "context",
+        #     "job_workflow_ref",
+        # ],
+    )
 )
 
 name = "iamme-iamme"
@@ -254,15 +264,17 @@ iamme_repo = github.Repository(
     # vulnerability_alerts=True,
     # allow_squash_merge=True,
 )
-oidc_sub_customization_template = github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
-    f"{name}-repo-oidc-sub-customization",
-    repository=iamme_repo.name,
-    use_default=True,
-    # include_claim_keys=[
-    #     "repo",
-    #     "context",
-    #     "job_workflow_ref",
-    # ],
+oidc_sub_customization_template = (
+    github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
+        f"{name}-repo-oidc-sub-customization",
+        repository=iamme_repo.name,
+        use_default=True,
+        # include_claim_keys=[
+        #     "repo",
+        #     "context",
+        #     "job_workflow_ref",
+        # ],
+    )
 )
 
 name = "goflat"
@@ -286,13 +298,15 @@ goflat_repo = github.Repository(
     # vulnerability_alerts=True,
     # allow_squash_merge=True,
 )
-oidc_sub_customization_template = github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
-    f"{name}-repo-oidc-sub-customization",
-    repository=goflat_repo.name,
-    use_default=True,
-    # include_claim_keys=[
-    #     "repo",
-    #     "context",
-    #     "job_workflow_ref",
-    # ],
+oidc_sub_customization_template = (
+    github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
+        f"{name}-repo-oidc-sub-customization",
+        repository=goflat_repo.name,
+        use_default=True,
+        # include_claim_keys=[
+        #     "repo",
+        #     "context",
+        #     "job_workflow_ref",
+        # ],
+    )
 )

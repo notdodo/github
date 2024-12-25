@@ -2,39 +2,10 @@
 
 from __future__ import annotations
 
-import re
-
 import pulumi
 import pulumi_github as github
 
-# Regular expression for validating GitHub repository names
-GITHUB_REPO_NAME_REGEX = re.compile(r"^[\w.-]+$")
-
-
-def _pulumi_error(message: str, resource: pulumi.Resource | None = None) -> None:
-    pulumi.error(message, resource)
-    raise ValueError(message)
-
-
-def _pulumi_warning(message: str, resource: pulumi.Resource | None = None) -> None:
-    pulumi.warn(message, resource)
-
-
-def format_resource_name(name: str, resource: pulumi.Resource | None = None) -> str:
-    """
-    Formats a string to be used as a Pulumi resource name.
-
-    :param name: The proposed name of the resource.
-    :param resource: The Pulumi resource for context in case of errors.
-    :return: A formatted, valid Pulumi resource name.
-    :raises NameError: If the name is invalid.
-    """
-    if GITHUB_REPO_NAME_REGEX.match(name):
-        return name.lower().replace(" ", "-")
-    error_message = (
-        "Invalid repository name. Only alphanumeric, '.', '-' and '_' are allowed."
-    )
-    _pulumi_error(error_message, resource)
+from .helpers import format_resource_name
 
 
 class PublicRepository(pulumi.ComponentResource):
@@ -49,11 +20,11 @@ class PublicRepository(pulumi.ComponentResource):
     def __init__(
         self,
         name: str,
-        default_oidc_claims: bool | None = True,
         oidc_claims: list[str] | None = None,
         opts: pulumi.ResourceOptions | None = None,
     ):
         """class init"""
+        default_oidc_claims = False
         self.name = name
         self.resource_name = f"{format_resource_name(name, self)}-repository"
         super().__init__(
@@ -75,12 +46,7 @@ class PublicRepository(pulumi.ComponentResource):
 
         if not oidc_claims:
             oidc_claims = []
-        if default_oidc_claims and len(oidc_claims) > 0:
-            _pulumi_warning(
-                "Specified `default_oidc_claims` with `default_oidc_claims` to `True` -> switching `default_oidc_claims` to `False`",
-                self.repository,
-            )
-            default_oidc_claims = False
+            default_oidc_claims = True
 
         self.oidc_claims = (
             github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
