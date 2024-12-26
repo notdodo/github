@@ -42,7 +42,7 @@ def format_resource_name(name: str, resource: Resource | None = None) -> str | N
     :raises NameError: If the name is invalid.
     """
     if GITHUB_REPO_NAME_REGEX.match(name):
-        return name.lower().replace(" ", "-")
+        return name.lower().replace(" ", "-").replace("_", "-")
     pulumi_error(
         "Invalid repository name. Only alphanumeric, '.', '-' and '_' are allowed.",
         resource,
