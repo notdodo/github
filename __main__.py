@@ -1,6 +1,5 @@
 """Pulumi project to manage `notdodo` public repositories"""
 
-
 from notdodo_github import PublicRepository
 
 PublicRepository(
