@@ -285,6 +285,12 @@ class PublicRepository(pulumi.ComponentResource):
             opts=pulumi.ResourceOptions(parent=self.repository),
         )
 
+        github.RepositoryEnvironment(
+            f"{self.resource_name}-{self.default_branch}-environment",
+            repository=self.repository.name,
+            environment=self.default_branch,
+        )
+
         if not oidc_claims:
             default_oidc_claims = True
 
