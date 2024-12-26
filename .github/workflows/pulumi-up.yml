@@ -6,7 +6,6 @@ on:
 
 concurrency:
   group: ghas-github-pulumi-up-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   python-ci:
