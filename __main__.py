@@ -1,6 +1,6 @@
 """Pulumi project to manage `notdodo` public repositories"""
 
-from notdodo_github import License, PublicRepository
+from notdodo_github import GitIgnore, License, PublicRepository
 
 PublicRepository(
     name="github",
@@ -92,6 +92,7 @@ PublicRepository(
 PublicRepository(
     name="bingokta",
     description="Bingo with Okta, but in Colombia",
+    gitignore_template=GitIgnore.RUST,
     license_template=License.GPL_3,
     topics=[
         "2fa",
