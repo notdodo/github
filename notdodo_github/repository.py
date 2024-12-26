@@ -289,6 +289,7 @@ class PublicRepository(pulumi.ComponentResource):
             f"{self.resource_name}-{self.default_branch}-environment",
             repository=self.repository.name,
             environment=self.default_branch,
+            opts=pulumi.ResourceOptions(parent=self.repository),
         )
 
         if not oidc_claims:
