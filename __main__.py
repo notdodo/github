@@ -1,9 +1,10 @@
 """Pulumi project to manage `notdodo` public repositories"""
 
-from notdodo_github import PublicRepository
+from notdodo_github import License, PublicRepository
 
 PublicRepository(
     name="github",
+    description="Manage notdodo public repositories.",
     oidc_claims=[
         "repo",
         "context",
@@ -18,15 +19,31 @@ PublicRepository(
 
 PublicRepository(
     name="erfiume_bot",
+    description="Bot per leggere i livelli idrometrici dei fiumi dell'Emilia Romagna riportati da allertameteo.regione.emilia-romagna.it.",
+    homepage_url="https://t.me/erfiume_bot",
+    license_template=License.GPL_3,
     oidc_claims=[
         "repo",
         "context",
         "job_workflow_ref",
     ],
+    topics=[
+        "emilia-romagna",
+        "livello-fiumi",
+        "telegram",
+        "rust",
+        "pulumi",
+    ],
 )
 
 PublicRepository(
     name="github-actions",
+    description="Collection of custom GHA and reusable workflows.",
+    topics=[
+        "github-actions",
+        "reusable-workflows",
+        "cicd-security",
+    ],
 )
 
 PublicRepository(
@@ -41,7 +58,6 @@ PublicRepository(
     topics=[
         "infrastructure-as-code",
         "kubernetes",
-        "kubernetes-cluster",
         "pulumi",
         "security",
     ],
@@ -51,6 +67,13 @@ PublicRepository(
 PublicRepository(
     name="sparktrail",
     description="Query AWS CloudTrail using Spark (python) to perform analysis",
+    license_template=License.GPL_3,
+    topics=[
+        "aws",
+        "cloudtrail",
+        "log",
+        "spark",
+    ],
 )
 
 PublicRepository(
@@ -69,6 +92,7 @@ PublicRepository(
 PublicRepository(
     name="bingokta",
     description="Bingo with Okta, but in Colombia",
+    license_template=License.GPL_3,
     topics=[
         "2fa",
         "okta",
@@ -79,6 +103,7 @@ PublicRepository(
 PublicRepository(
     name="IAMme-IAMme",
     description="IAMme is a tool designed to visualize the connections between entities within an Okta tenant",
+    license_template=License.GPL_3,
     topics=[
         "graph",
         "iam",
@@ -89,11 +114,10 @@ PublicRepository(
 PublicRepository(
     name="goflat",
     description="Flatten complex JSON structures to a one-dimensional map (JSON key/value).",
+    license_template=License.GPL_3,
     topics=[
         "flattener",
-        "golang",
         "json",
-        "slices",
-        "structs",
+        "golang",
     ],
 )
