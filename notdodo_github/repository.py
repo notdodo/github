@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from enum import StrEnum
+from pathlib import Path
 
 import pulumi
 import pulumi_github as github
@@ -311,6 +312,45 @@ class PublicRepository(pulumi.ComponentResource):
             f"{self.resource_name}-dependabot-security",
             enabled=True,
             repository=self.repository.name,
+            opts=pulumi.ResourceOptions(parent=self.repository),
+        )
+
+        github.RepositoryFile(
+            f"{self.resource_name}-enforced-workflow-gitleaks",
+            repository=self.repository.name,
+            branch=self.default_branch,
+            file=".github/workflows/gitleaks.yml",
+            content=Path.open(Path(".github/workflows/gitleaks.yml")).read(),
+            commit_message="[sec]: enforce Gitleaks workflow",
+            commit_author="notdodo",
+            commit_email="6991986+notdodo@users.noreply.github.com",
+            overwrite_on_create=True,
+            opts=pulumi.ResourceOptions(parent=self.repository),
+        )
+
+        github.RepositoryFile(
+            f"{self.resource_name}-enforced-workflow-infra-scan",
+            repository=self.repository.name,
+            branch=self.default_branch,
+            file=".github/workflows/infra-scan.yml",
+            content=Path.open(Path(".github/workflows/infra-scan.yml")).read(),
+            commit_message="[sec]: enforce static scan of infra files workflow",
+            commit_author="notdodo",
+            commit_email="6991986+notdodo@users.noreply.github.com",
+            overwrite_on_create=True,
+            opts=pulumi.ResourceOptions(parent=self.repository),
+        )
+
+        github.RepositoryFile(
+            f"{self.resource_name}-enforced-workflow-cleanup-branch",
+            repository=self.repository.name,
+            branch=self.default_branch,
+            file=".github/workflows/branch-cleanup.yml",
+            content=Path.open(Path(".github/workflows/branch-cleanup.yml")).read(),
+            commit_message="[enh]: enforce auto clean up of PR cache workflow",
+            commit_author="notdodo",
+            commit_email="6991986+notdodo@users.noreply.github.com",
+            overwrite_on_create=True,
             opts=pulumi.ResourceOptions(parent=self.repository),
         )
 
