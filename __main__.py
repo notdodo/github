@@ -22,6 +22,14 @@ PublicRepository(
     description="Bot per leggere i livelli idrometrici dei fiumi dell'Emilia Romagna riportati da allertameteo.regione.emilia-romagna.it.",
     homepage_url="https://t.me/erfiume_bot",
     license_template=License.GPL_3,
+    enabled_github_actions=[
+        "aws-actions/*",
+        "jaxxstorm/action-install-gh-release@*",
+        "mlugg/setup-zig@*",
+        "snok/install-poetry@*",
+        "swatinem/rust-cache@*",
+        "tj-actions/changed-files@*",
+    ],
     oidc_claims=[
         "repo",
         "context",
