@@ -8,6 +8,7 @@ from pathlib import Path
 import pulumi
 import pulumi_github as github
 
+from .github_actions import default_allowed_github_actions
 from .helpers import format_resource_name
 
 
@@ -209,9 +210,16 @@ class PublicRepository(pulumi.ComponentResource):
     """
     A Pulumi component resource to create a public GitHub repository with customizable options.
 
-    :param name: The name of the repository to create.
-    :param repo_opts: `ResourceOptions` for configuring the GitHub repository resource.
-    :param opts: `ResourceOptions` for configuring this custom resource.
+    :param name [str]: The name of the repository to create.
+    :param description [str | None]: A short description of the repository.
+    :param gitignore_template [GitIgnore | None]: The `.gitignore` template to use.
+    :param github_actions_enabled [list[str] | None]: List of allowed GitHub Actions patterns.
+    :param homepage_url [str | None]: URL for the repository homepage.
+    :param license_template [License | None]: License template for the repository.
+    :param oidc_claims [list[str] | None]: OIDC claims for GitHub Actions.
+    :param topics [list[str] | None]: List of topics for the repository.
+    :param repo_opts [pulumi.ResourceOptions | None]: Pulumi resource options for the GitHub repository.
+    :param opts [pulumi.ResourceOptions | None]: Pulumi resource options for the custom resource.
     """
 
     def __init__(  # noqa: PLR0913
@@ -219,22 +227,35 @@ class PublicRepository(pulumi.ComponentResource):
         name: str,
         description: str | None = None,
         gitignore_template: GitIgnore | None = None,
+        enabled_github_actions: list[str] | None = None,
         homepage_url: str | None = None,
         license_template: License | None = None,
         oidc_claims: list[str] | None = None,
         topics: list[str] | None = None,
         repo_opts: pulumi.ResourceOptions | None = None,
+        default_branch: str = "main",
         opts: pulumi.ResourceOptions | None = None,
     ):
-        """class init"""
+        """
+        Initialize the PublicRepository class.
+        """
         default_oidc_claims = False
         self.name = name
-        self.default_branch = "main"
+        self.default_branch = default_branch
         self.resource_name = f"{format_resource_name(name, self)}-repository"
         super().__init__(
             "notdodo:github:PublicRepository", self.resource_name, {}, opts
         )
-        topics = topics if topics else []
+        topics = topics or []
+        if enabled_github_actions:
+            enabled_github_actions.extend(default_allowed_github_actions)
+        else:
+            if enabled_github_actions is not None and len(enabled_github_actions) == 0:
+                enabled_github_actions = []
+            else:
+                enabled_github_actions = default_allowed_github_actions
+        enabled_github_actions.sort()
+        default_oidc_claims = oidc_claims is None
 
         self.repository = github.Repository(
             self.resource_name,
@@ -251,9 +272,7 @@ class PublicRepository(pulumi.ComponentResource):
             has_issues=True,
             has_projects=False,
             has_wiki=False,
-            homepage_url=(
-                homepage_url if homepage_url else f"https://github.com/notdodo/{name}"
-            ),
+            homepage_url=homepage_url or f"https://github.com/notdodo/{name}",
             license_template=license_template,
             security_and_analysis=github.RepositorySecurityAndAnalysisArgs(
                 secret_scanning=github.RepositorySecurityAndAnalysisSecretScanningArgs(
@@ -293,9 +312,6 @@ class PublicRepository(pulumi.ComponentResource):
             opts=pulumi.ResourceOptions(parent=self.repository),
         )
 
-        if not oidc_claims:
-            default_oidc_claims = True
-
         self.oidc_claims = (
             github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
                 f"{self.resource_name}-oidc-sub-claims",
@@ -312,6 +328,19 @@ class PublicRepository(pulumi.ComponentResource):
             f"{self.resource_name}-dependabot-security",
             enabled=True,
             repository=self.repository.name,
+            opts=pulumi.ResourceOptions(parent=self.repository),
+        )
+
+        github.ActionsRepositoryPermissions(
+            f"{self.resource_name}-actions-allowed",
+            enabled=True if len(enabled_github_actions) > 0 else False,
+            allowed_actions="selected",
+            allowed_actions_config=github.ActionsRepositoryPermissionsAllowedActionsConfigArgs(
+                github_owned_allowed=True if len(enabled_github_actions) > 0 else False,
+                patterns_alloweds=enabled_github_actions,
+                verified_allowed=False,
+            ),
+            repository=self.repository,
             opts=pulumi.ResourceOptions(parent=self.repository),
         )
 
