@@ -133,3 +133,8 @@ PublicRepository(
         "golang",
     ],
 )
+
+
+PublicRepository(
+    name="deleteme",
+)

@@ -8,7 +8,7 @@ from pathlib import Path
 import pulumi
 import pulumi_github as github
 
-from .github_actions import default_allowed_github_actions
+from .github_actions import DEFAULT_ALLOWED_GITHUB_ACTIONS
 from .helpers import format_resource_name
 
 
@@ -248,9 +248,9 @@ class PublicRepository(pulumi.ComponentResource):
         )
         topics = topics or []
         if enabled_github_actions:
-            enabled_github_actions.extend(default_allowed_github_actions)
+            enabled_github_actions.extend(DEFAULT_ALLOWED_GITHUB_ACTIONS)
         else:
-            enabled_github_actions = default_allowed_github_actions
+            enabled_github_actions = DEFAULT_ALLOWED_GITHUB_ACTIONS
         enabled_github_actions.sort()
         default_oidc_claims = oidc_claims is None
 
