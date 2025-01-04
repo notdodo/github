@@ -330,10 +330,10 @@ class PublicRepository(pulumi.ComponentResource):
 
         github.ActionsRepositoryPermissions(
             f"{self.resource_name}-actions-allowed",
-            enabled=len(enabled_github_actions) > 0,
+            enabled=True,
             allowed_actions="selected",
             allowed_actions_config=github.ActionsRepositoryPermissionsAllowedActionsConfigArgs(
-                github_owned_allowed=len(enabled_github_actions) > 0,
+                github_owned_allowed=True,
                 patterns_alloweds=enabled_github_actions,
                 verified_allowed=False,
             ),
