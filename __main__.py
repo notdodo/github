@@ -5,6 +5,9 @@ from notdodo_github import GitIgnore, License, PublicRepository
 PublicRepository(
     name="github",
     description="Manage notdodo public repositories.",
+    enabled_github_actions=[
+        "snok/install-poetry@*",
+    ],
     oidc_claims=[
         "repo",
         "context",
