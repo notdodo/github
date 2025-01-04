@@ -2,7 +2,7 @@
 Define the list of globally allowed GitHub Actions
 """
 
-default_allowed_github_actions = [
+DEFAULT_ALLOWED_GITHUB_ACTIONS = [
     "astral-sh/setup-uv@*",
     "checkmarx/kics-github-action@*",
     "gitleaks/gitleaks-action@*",
