@@ -249,8 +249,6 @@ class PublicRepository(pulumi.ComponentResource):
         topics = topics or []
         if enabled_github_actions:
             enabled_github_actions.extend(default_allowed_github_actions)
-        elif enabled_github_actions is not None and len(enabled_github_actions) == 0:
-            enabled_github_actions = []
         else:
             enabled_github_actions = default_allowed_github_actions
         enabled_github_actions.sort()
