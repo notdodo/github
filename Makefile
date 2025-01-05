@@ -14,9 +14,6 @@ lint: ## Launch the linting tools
 install: ## Install Python dependencies
 	poetry install --no-root
 
-test:
-	@echo "Not Implemented"
-
 type-check: ## Launch the type checking tool
 	poetry run mypy .
 

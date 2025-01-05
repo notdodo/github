@@ -51,6 +51,8 @@ PublicRepository(
     name="github-actions",
     description="Collection of custom GHA and reusable workflows.",
     enabled_github_actions=[
+        "docker/*",
+        "snok/install-poetry@*",
         "tj-actions/changed-files@*",
     ],
     topics=[
