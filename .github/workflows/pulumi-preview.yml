@@ -26,6 +26,7 @@ jobs:
         # v4.2.2
         with:
           fetch-depth: 0
+          persist-credentials: false
       - uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a
         # v4.1.2
         with:
@@ -49,6 +50,7 @@ jobs:
         # v1.0.0
         with:
           organization: notdodo
+          # kics-scan ignore-line
           requested-token-type: urn:pulumi:token-type:access_token:personal
           scope: user:notdodo
       - uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a
