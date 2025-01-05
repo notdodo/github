@@ -50,6 +50,9 @@ PublicRepository(
 PublicRepository(
     name="github-actions",
     description="Collection of custom GHA and reusable workflows.",
+    enabled_github_actions=[
+        "tj-actions/changed-files@*",
+    ]
     topics=[
         "github-actions",
         "reusable-workflows",
