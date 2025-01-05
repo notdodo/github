@@ -20,7 +20,7 @@ pulumi-github = "^6.5.0"
 mypy = { extras = ["faster-cache"], version = "^1.14.1" }
 pydantic = "^2.10.2"
 pylint = "^3.3.3"
-ruff = "^0.8.1"
+ruff = "^0.8.6"
 
 [tool.ruff]
 output-format = "github"
