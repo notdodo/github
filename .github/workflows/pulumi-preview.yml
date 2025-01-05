@@ -29,9 +29,13 @@ jobs:
           application_private_key: ${{ secrets.APP_PRIVATE_KEY }}
       - run: |
           echo "Testing token..."
+          gh repo create deleteme
           curl -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
               -H "Accept: application/vnd.github+json" \
               https://api.github.com/user/repos
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
       - run: |
           curl -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
            -H "Accept: application/vnd.github+json" \
