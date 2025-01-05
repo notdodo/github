@@ -23,14 +23,15 @@ jobs:
       # pull-requests: write
       # id-token: write
     steps:
-      - uses: peter-murray/workflow-application-token-action@v4
+      - uses: actions/create-github-app-token@c1a285145b9d317df6ced56c09f525b5c2b6f755
+        # v1.11.1
         id: app-token
         with:
-          application_id: ${{ vars.APP_ID }}
-          application_private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - run: |
           echo "Testing token..."
-          gh repo create deleteme --public
+          gh repo create delete --public
           curl -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
               -H "Accept: application/vnd.github+json" \
               https://api.github.com/user/repos
