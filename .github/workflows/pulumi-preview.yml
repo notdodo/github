@@ -18,9 +18,10 @@ jobs:
     needs: python-ci
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pull-requests: write
-      id-token: write
+      write-all
+      # contents: read
+      # pull-requests: write
+      # id-token: write
     steps:
       - uses: peter-murray/workflow-application-token-action@v4
         id: app-token
