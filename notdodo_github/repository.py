@@ -371,7 +371,7 @@ class PublicRepository(pulumi.ComponentResource):
             f"{self.resource_name}-enforced-workflow-cleanup-branch",
             repository=self.repository.name,
             branch=self.default_branch,
-            file=".github/workflows/branch-cleanup.yml",
+            file=".github/workflows/repo-branch-cleanup.yml",
             content=Path.open(Path(".github/workflows/repo-branch-cleanup.yml")).read(),
             commit_message="[enh]: enforce auto clean up of PR cache workflow",
             commit_author="notdodo",
