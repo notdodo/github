@@ -63,6 +63,9 @@ PublicRepository(
 PublicRepository(
     name="notdodo",
     description="About",
+    enabled_github_actions=[
+        "jamesgeorge007/github-activity-readme@*",
+    ],
 )
 
 
