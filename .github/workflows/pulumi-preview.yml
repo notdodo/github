@@ -29,6 +29,7 @@ jobs:
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
       - run: |
           echo "Testing token..."
           gh repo create delete --public
