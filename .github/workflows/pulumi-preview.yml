@@ -38,6 +38,11 @@ jobs:
           curl -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
            -H "Accept: application/vnd.github+json" \
            https://api.github.com/app
+      - name: Use the token
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          gh repo list
 
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         # v4.2.2
