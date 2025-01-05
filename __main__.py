@@ -57,6 +57,8 @@ PublicRepository(
         "github-actions",
         "reusable-workflows",
         "cicd-security",
+        "snok/install-poetry@*",
+        "docker/*",
     ],
 )
 
