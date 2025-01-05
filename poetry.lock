@@ -441,18 +441,18 @@ six = ">=1.12,<2.0"
 
 [[package]]
 name = "pulumi-github"
-version = "6.4.0"
+version = "6.5.0"
 description = "A Pulumi package for creating and managing github cloud resources."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "pulumi_github-6.4.0-py3-none-any.whl", hash = "sha256:6dfdf1c02c5da61818ae98bd3d252d6fed95fd099131a6715a374ab3bbf25e92"},
-    {file = "pulumi_github-6.4.0.tar.gz", hash = "sha256:a62a6d8c53e022d5b3665849581e61fcaf688206bf84d3c71dba8ff6e02a7310"},
+    {file = "pulumi_github-6.5.0-py3-none-any.whl", hash = "sha256:8ead837b169be6e4f2aa4e9bc58656a83ed147c21f1ea931215cbf50ff324183"},
+    {file = "pulumi_github-6.5.0.tar.gz", hash = "sha256:5824dead75ec7d4ea9159d0ad548af0d0d1a0510237eea8f520951bf85cfe415"},
 ]
 
 [package.dependencies]
 parver = ">=0.2.1"
-pulumi = ">=3.136.0,<4.0.0"
+pulumi = ">=3.142.0,<4.0.0"
 semver = ">=2.8.1"
 
 [[package]]
@@ -747,4 +747,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "2f3325a7ee9267bd1c6863b06e1de53961e8747b3a97b9f029a939656c288afc"
+content-hash = "f343b378ecd9ac3845a30ca19c838ca1faf6dac9bb363e0c8a6991bc6ed4e0f6"
