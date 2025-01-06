@@ -8,7 +8,7 @@ concurrency:
 
 jobs:
   python-ci:
-    uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.2
+    uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.5
     with:
       poetry-version: latest
       python-version: 3.13
