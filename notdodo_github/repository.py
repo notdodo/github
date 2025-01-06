@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from enum import StrEnum
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pulumi
 import pulumi_github as github
@@ -11,199 +11,9 @@ import pulumi_github as github
 from .github_actions import DEFAULT_ALLOWED_GITHUB_ACTIONS
 from .helpers import format_resource_name
 
-
-class GitIgnore(StrEnum):
-    """GitIgnore file templates"""
-
-    AL = "AL"
-    ACTIONSCRIPT = "Actionscript"
-    ADA = "Ada"
-    AGDA = "Agda"
-    ANDROID = "Android"
-    APPENGINE = "AppEngine"
-    APPCELERATORTITANIUM = "AppceleratorTitanium"
-    ARCHLINUXPACKAGES = "ArchLinuxPackages"
-    AUTOTOOLS = "Autotools"
-    BALLERINA = "Ballerina"
-    C = "C"
-    CPP = "C++"
-    CFWHEELS = "CFWheels"
-    CMAKE = "CMake"
-    CUDA = "CUDA"
-    CAKEPHP = "CakePHP"
-    CHEFCOOKBOOK = "ChefCookbook"
-    CLOJURE = "Clojure"
-    CODEIGNITER = "CodeIgniter"
-    COMMONLISP = "CommonLisp"
-    COMPOSER = "Composer"
-    CONCRETE5 = "Concrete5"
-    COQ = "Coq"
-    CRAFTCMS = "CraftCMS"
-    D = "D"
-    DM = "DM"
-    DART = "Dart"
-    DELPHI = "Delphi"
-    DRUPAL = "Drupal"
-    ECU_TEST = "ECU-TEST"
-    EPISERVER = "EPiServer"
-    EAGLE = "Eagle"
-    ELISP = "Elisp"
-    ELIXIR = "Elixir"
-    ELM = "Elm"
-    ERLANG = "Erlang"
-    EXPRESSIONENGINE = "ExpressionEngine"
-    EXTJS = "ExtJs"
-    FANCY = "Fancy"
-    FINALE = "Finale"
-    FIREBASE = "Firebase"
-    FLAXENGINE = "FlaxEngine"
-    FORCEDOTCOM = "ForceDotCom"
-    FORTRAN = "Fortran"
-    FUELPHP = "FuelPHP"
-    GWT = "GWT"
-    GCOV = "Gcov"
-    GITBOOK = "GitBook"
-    GITHUBPAGES = "GitHubPages"
-    GO = "Go"
-    GODOT = "Godot"
-    GRADLE = "Gradle"
-    GRAILS = "Grails"
-    HASKELL = "Haskell"
-    IAR = "IAR"
-    IGORPRO = "IGORPro"
-    IDRIS = "Idris"
-    JBOSS = "JBoss"
-    JENKINS_HOME = "JENKINS_HOME"
-    JAVA = "Java"
-    JEKYLL = "Jekyll"
-    JOOMLA = "Joomla"
-    JULIA = "Julia"
-    KICAD = "KiCad"
-    KOHANA = "Kohana"
-    KOTLIN = "Kotlin"
-    LABVIEW = "LabVIEW"
-    LARAVEL = "Laravel"
-    LEININGEN = "Leiningen"
-    LEMONSTAND = "LemonStand"
-    LILYPOND = "Lilypond"
-    LITHIUM = "Lithium"
-    LUA = "Lua"
-    MAGENTO = "Magento"
-    MAVEN = "Maven"
-    MERCURY = "Mercury"
-    METAPROGRAMMINGSYSTEM = "MetaProgrammingSystem"
-    MODELICA = "Modelica"
-    NANOC = "Nanoc"
-    NIM = "Nim"
-    NODE = "Node"
-    OCAML = "OCaml"
-    OBJECTIVEC = "Objective-C"
-    OPA = "Opa"
-    OPENCART = "OpenCart"
-    ORACLEFORMS = "OracleForms"
-    PACKER = "Packer"
-    PERL = "Perl"
-    PHALCON = "Phalcon"
-    PLAYFRAMEWORK = "PlayFramework"
-    PLONE = "Plone"
-    PRESTASHOP = "Prestashop"
-    PROCESSING = "Processing"
-    PURESCRIPT = "PureScript"
-    PYTHON = "Python"
-    QOOXDOO = "Qooxdoo"
-    QT = "Qt"
-    R = "R"
-    ROS = "ROS"
-    RACKET = "Racket"
-    RAILS = "Rails"
-    RAKU = "Raku"
-    RESCRIPT = "ReScript"
-    RHODESRHOMOBILE = "RhodesRhomobile"
-    RUBY = "Ruby"
-    RUST = "Rust"
-    SCONS = "SCons"
-    SASS = "Sass"
-    SCALA = "Scala"
-    SCHEME = "Scheme"
-    SCRIVENER = "Scrivener"
-    SDCC = "Sdcc"
-    SEAMGEN = "SeamGen"
-    SKETCHUP = "SketchUp"
-    SMALLTALK = "Smalltalk"
-    STELLA = "Stella"
-    SUGARCRM = "SugarCRM"
-    SWIFT = "Swift"
-    SYMFONY = "Symfony"
-    SYMPHONYCMS = "SymphonyCMS"
-    TEX = "TeX"
-    TERRAFORM = "Terraform"
-    TEXTPATTERN = "Textpattern"
-    TURBOGEARS2 = "TurboGears2"
-    TWINCAT3 = "TwinCAT3"
-    TYPO3 = "Typo3"
-    UNITY = "Unity"
-    UNREALENGINE = "UnrealEngine"
-    VVVV = "VVVV"
-    VISUALSTUDIO = "VisualStudio"
-    WAF = "Waf"
-    WORDPRESS = "WordPress"
-    XOJO = "Xojo"
-    YEOMAN = "Yeoman"
-    YII = "Yii"
-    ZENDFRAMEWORK = "ZendFramework"
-    ZEPHIR = "Zephir"
-    ZIG = "Zig"
-
-
-class License(StrEnum):
-    """Available Licenses"""
-
-    AFL_3 = "afl-3"
-    AGPL_3 = "agpl-3"
-    APACHE_2 = "apache-2"
-    ARTISTIC_2 = "artistic-2"
-    BLUEOAK_1 = "blueoak-1"
-    BSD_0 = "0bsd"
-    BSD_2_CLAUSE = "bsd-2-clause"
-    BSD_2_CLAUSE_PATENT = "bsd-2-clause-patent"
-    BSD_3_CLAUSE = "bsd-3-clause"
-    BSD_3_CLAUSE_CLEAR = "bsd-3-clause-clear"
-    BSD_4_CLAUSE = "bsd-4-clause"
-    BSL_1 = "bsl-1"
-    CC_BY_4 = "cc-by-4"
-    CC_BY_SA_4 = "cc-by-sa-4"
-    CC0_1 = "cc0-1"
-    CECILL_2 = "cecill-2"
-    CERN_OHL_P_2 = "cern-ohl-p-2"
-    CERN_OHL_S_2 = "cern-ohl-s-2"
-    CERN_OHL_W_2 = "cern-ohl-w-2"
-    ECL_2 = "ecl-2"
-    EPL_1 = "epl-1"
-    EPL_2 = "epl-2"
-    EUPL_1 = "eupl-1"
-    GFDL_1 = "gfdl-1"
-    GPL_2 = "gpl-2"
-    GPL_3 = "gpl-3"
-    ISC = "isc"
-    LGPL_2 = "lgpl-2"
-    LGPL_3 = "lgpl-3"
-    LPPL_1 = "lppl-1"
-    MIT = "mit"
-    MIT_0 = "mit-0"
-    MPL_2 = "mpl-2"
-    MS_PL = "ms-pl"
-    MS_RL = "ms-rl"
-    MULANPSL_2 = "mulanpsl-2"
-    NCSA = "ncsa"
-    ODBL_1 = "odbl-1"
-    OFL_1 = "ofl-1"
-    OSL_3 = "osl-3"
-    POSTGRESQL = "postgresql"
-    UNLICENSE = "unlicense"
-    UPL_1 = "upl-1"
-    VIM = "vim"
-    WTFPL = "wtfpl"
-    ZLIB = "zlib"
+if TYPE_CHECKING:
+    from .gitignore import GitIgnore
+    from .license import License
 
 
 class PublicRepository(pulumi.ComponentResource):
@@ -374,6 +184,19 @@ class PublicRepository(pulumi.ComponentResource):
             file=".github/workflows/repo-branch-cleanup.yml",
             content=Path.open(Path(".github/workflows/repo-branch-cleanup.yml")).read(),
             commit_message="[enh]: enforce auto clean up of PR cache workflow",
+            commit_author="notdodo",
+            commit_email="6991986+notdodo@users.noreply.github.com",
+            overwrite_on_create=True,
+            opts=pulumi.ResourceOptions(parent=self.repository),
+        )
+
+        github.RepositoryFile(
+            f"{self.resource_name}-enforced-codeowners",
+            repository=self.repository.name,
+            branch=self.default_branch,
+            file=".github/CODEOWNERS",
+            content=Path.open(Path(".github/CODEOWNERS")).read(),
+            commit_message="[enh]: set CODEOWNERS",
             commit_author="notdodo",
             commit_email="6991986+notdodo@users.noreply.github.com",
             overwrite_on_create=True,

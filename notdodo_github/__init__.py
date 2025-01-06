@@ -1,6 +1,8 @@
 """Init file for notdodo_github library"""
 
-from .repository import GitIgnore, License, PublicRepository
+from .gitignore import GitIgnore
+from .license import License
+from .repository import PublicRepository
 
 __all__ = [
     "GitIgnore",
