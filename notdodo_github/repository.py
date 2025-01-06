@@ -96,6 +96,7 @@ class PublicRepository(pulumi.ComponentResource):
         self.__branch_and_environment()
         self.oidc_claims = self.__oidc_claims(oidc_claims)
         self.__actions(enabled_github_actions)
+        self.__branch_ruleset()
 
         github.RepositoryDependabotSecurityUpdates(
             f"{self.resource_name}-dependabot-security",
@@ -212,5 +213,60 @@ class PublicRepository(pulumi.ComponentResource):
             commit_author="notdodo",
             commit_email="6991986+notdodo@users.noreply.github.com",
             overwrite_on_create=True,
+            opts=pulumi.ResourceOptions(parent=self.repository),
+        )
+
+    def __branch_ruleset(self) -> None:
+        github.RepositoryRuleset(
+            f"{self.resource_name}-branch-ruleset-${self.default_branch}",
+            bypass_actors=[
+                github.RepositoryRulesetBypassActorArgs(
+                    bypass_mode="always",
+                    actor_type="RepositoryRole",
+                    actor_id=5,  # RepositoryAdmin
+                )
+            ],
+            conditions=github.RepositoryRulesetConditionsArgs(
+                ref_name=github.RepositoryRulesetConditionsRefNameArgs(
+                    includes=["~DEFAULT_BRANCH"],
+                    excludes=[],
+                ),
+            ),
+            enforcement="active",
+            name=self.default_branch,
+            repository=self.repository.name,
+            rules=github.RepositoryRulesetRulesArgs(
+                deletion=True,
+                non_fast_forward=True,
+                pull_request=github.RepositoryRulesetRulesPullRequestArgs(
+                    dismiss_stale_reviews_on_push=True,
+                    require_code_owner_review=True,
+                    require_last_push_approval=True,
+                    required_review_thread_resolution=True,
+                ),
+                required_signatures=True,
+                required_status_checks=github.RepositoryRulesetRulesRequiredStatusChecksArgs(
+                    required_checks=[
+                        github.RepositoryRulesetRulesRequiredStatusChecksRequiredCheckArgs(
+                            context="gitleaks / gitleaks",
+                        )
+                    ],
+                ),
+                required_code_scanning=github.RepositoryRulesetRulesRequiredCodeScanningArgs(
+                    required_code_scanning_tools=[
+                        github.RepositoryRulesetRulesRequiredCodeScanningRequiredCodeScanningToolArgs(
+                            alerts_threshold="errors_and_warnings",
+                            security_alerts_threshold="medium_or_higher",
+                            tool="KICS",
+                        ),
+                        github.RepositoryRulesetRulesRequiredCodeScanningRequiredCodeScanningToolArgs(
+                            alerts_threshold="errors_and_warnings",
+                            security_alerts_threshold="medium_or_higher",
+                            tool="zizmor",
+                        ),
+                    ],
+                ),
+            ),
+            target="branch",
             opts=pulumi.ResourceOptions(parent=self.repository),
         )
