@@ -380,6 +380,19 @@ class PublicRepository(pulumi.ComponentResource):
             opts=pulumi.ResourceOptions(parent=self.repository),
         )
 
+        github.RepositoryFile(
+            f"{self.resource_name}-enforced-codeowners",
+            repository=self.repository.name,
+            branch=self.default_branch,
+            file=".github/CODEOWNERS",
+            content=Path.open(Path(".github/CODEOWNERS")).read(),
+            commit_message="[enh]: set CODEOWNERS",
+            commit_author="notdodo",
+            commit_email="6991986+notdodo@users.noreply.github.com",
+            overwrite_on_create=True,
+            opts=pulumi.ResourceOptions(parent=self.repository),
+        )
+
         self.register_outputs(
             {"repository": self.repository, "oidc_claims": self.oidc_claims}
         )
