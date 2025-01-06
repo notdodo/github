@@ -49,7 +49,7 @@ class PublicRepository(pulumi.ComponentResource):
         """
         Initialize the PublicRepository class.
         """
-        default_oidc_claims = False
+
         self.name = name
         self.default_branch = default_branch
         self.resource_name = f"{format_resource_name(name, self)}-repository"
@@ -57,12 +57,6 @@ class PublicRepository(pulumi.ComponentResource):
             "notdodo:github:PublicRepository", self.resource_name, {}, opts
         )
         topics = topics or []
-        if enabled_github_actions:
-            enabled_github_actions.extend(DEFAULT_ALLOWED_GITHUB_ACTIONS)
-        else:
-            enabled_github_actions = DEFAULT_ALLOWED_GITHUB_ACTIONS
-        enabled_github_actions.sort()
-        default_oidc_claims = oidc_claims is None
 
         self.repository = github.Repository(
             self.resource_name,
@@ -99,6 +93,22 @@ class PublicRepository(pulumi.ComponentResource):
             ),
         )
 
+        self.__branch_and_environment()
+        self.oidc_claims = self.__oidc_claims(oidc_claims)
+        self.__actions(enabled_github_actions)
+
+        github.RepositoryDependabotSecurityUpdates(
+            f"{self.resource_name}-dependabot-security",
+            enabled=True,
+            repository=self.repository.name,
+            opts=pulumi.ResourceOptions(parent=self.repository),
+        )
+
+        self.register_outputs(
+            {"repository": self.repository, "oidc_claims": self.oidc_claims}
+        )
+
+    def __branch_and_environment(self) -> None:
         github.Branch(
             f"{self.resource_name}-{self.default_branch}-branch",
             branch=self.default_branch,
@@ -119,25 +129,27 @@ class PublicRepository(pulumi.ComponentResource):
             opts=pulumi.ResourceOptions(parent=self.repository),
         )
 
-        self.oidc_claims = (
-            github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
-                f"{self.resource_name}-oidc-sub-claims",
-                repository=self.repository.name,
-                use_default=default_oidc_claims,
-                include_claim_keys=oidc_claims,
-                opts=pulumi.ResourceOptions(
-                    parent=self.repository, delete_before_replace=True
-                ),
-            )
-        )
-
-        github.RepositoryDependabotSecurityUpdates(
-            f"{self.resource_name}-dependabot-security",
-            enabled=True,
+    def __oidc_claims(
+        self,
+        oidc_claims: list[str] | None = None,
+    ) -> github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate:
+        default_oidc_claims = oidc_claims is None
+        return github.ActionsRepositoryOidcSubjectClaimCustomizationTemplate(
+            f"{self.resource_name}-oidc-sub-claims",
             repository=self.repository.name,
-            opts=pulumi.ResourceOptions(parent=self.repository),
+            use_default=default_oidc_claims,
+            include_claim_keys=oidc_claims,
+            opts=pulumi.ResourceOptions(
+                parent=self.repository, delete_before_replace=True
+            ),
         )
 
+    def __actions(self, enabled_github_actions: list[str] | None = None) -> None:
+        if enabled_github_actions:
+            enabled_github_actions.extend(DEFAULT_ALLOWED_GITHUB_ACTIONS)
+        else:
+            enabled_github_actions = DEFAULT_ALLOWED_GITHUB_ACTIONS
+        enabled_github_actions.sort()
         github.ActionsRepositoryPermissions(
             f"{self.resource_name}-actions-allowed",
             enabled=True,
@@ -201,8 +213,4 @@ class PublicRepository(pulumi.ComponentResource):
             commit_email="6991986+notdodo@users.noreply.github.com",
             overwrite_on_create=True,
             opts=pulumi.ResourceOptions(parent=self.repository),
-        )
-
-        self.register_outputs(
-            {"repository": self.repository, "oidc_claims": self.oidc_claims}
         )
