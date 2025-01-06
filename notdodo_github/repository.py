@@ -218,7 +218,7 @@ class PublicRepository(pulumi.ComponentResource):
 
     def __branch_ruleset(self) -> None:
         github.RepositoryRuleset(
-            f"{self.resource_name}-branch-ruleset-${self.default_branch}",
+            f"{self.resource_name}-branch-ruleset-{self.default_branch}",
             bypass_actors=[
                 github.RepositoryRulesetBypassActorArgs(
                     bypass_mode="always",
@@ -249,24 +249,16 @@ class PublicRepository(pulumi.ComponentResource):
                     required_checks=[
                         github.RepositoryRulesetRulesRequiredStatusChecksRequiredCheckArgs(
                             context="gitleaks / gitleaks",
-                        )
-                    ],
-                ),
-                required_code_scanning=github.RepositoryRulesetRulesRequiredCodeScanningArgs(
-                    required_code_scanning_tools=[
-                        github.RepositoryRulesetRulesRequiredCodeScanningRequiredCodeScanningToolArgs(
-                            alerts_threshold="errors_and_warnings",
-                            security_alerts_threshold="medium_or_higher",
-                            tool="KICS",
                         ),
-                        github.RepositoryRulesetRulesRequiredCodeScanningRequiredCodeScanningToolArgs(
-                            alerts_threshold="errors_and_warnings",
-                            security_alerts_threshold="medium_or_higher",
-                            tool="zizmor",
+                        github.RepositoryRulesetRulesRequiredStatusChecksRequiredCheckArgs(
+                            context="KICS",
                         ),
                     ],
                 ),
             ),
             target="branch",
-            opts=pulumi.ResourceOptions(parent=self.repository),
+            opts=pulumi.ResourceOptions(
+                parent=self.repository,
+                delete_before_replace=True,
+            ),
         )
