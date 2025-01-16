@@ -113,6 +113,12 @@ PublicRepository(
 PublicRepository(
     name="bingokta",
     description="Bingo with Okta, but in Colombia",
+    enabled_github_actions=[
+        "aws-actions/configure-aws-credentials@*",
+        "jaxxstorm/action-install-gh-release@*",
+        "mlugg/setup-zig@*",
+        "swatinem/rust-cache@*",
+    ],
     gitignore_template=GitIgnore.RUST,
     license_template=License.GPL_3,
     topics=[
