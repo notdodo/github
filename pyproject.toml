@@ -13,7 +13,7 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
-pulumi = "^3.147.0"
+pulumi = "^3.148.0"
 pulumi-github = "^6.6.0"
 
 [tool.poetry.group.dev.dependencies]
