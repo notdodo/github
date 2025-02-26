@@ -132,6 +132,13 @@ PublicRepository(
     name="IAMme-IAMme",
     description="IAMme is a tool designed to visualize the connections between entities within an Okta tenant",
     license_template=License.GPL_3,
+    enabled_github_actions=[
+        "securego/gosec@*",
+        "golangci/golangci-lint-action@*",
+        "docker/setup-qemu-action@*",
+        "docker/setup-buildx-action@*",
+        "docker/login-action@*",
+    ],
     topics=[
         "graph",
         "iam",
