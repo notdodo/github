@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   python-ci:
-    uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.8
+    uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.9
     with:
       poetry-version: latest
       python-version: 3.13
@@ -27,8 +27,8 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f
-        # v4.2.1
+      - uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf
+        # v4.2.2
         with:
           path: ~/.local
           key: poetry-latest
@@ -53,15 +53,15 @@ jobs:
           # kics-scan ignore-line
           requested-token-type: urn:pulumi:token-type:access_token:personal
           scope: user:notdodo
-      - uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f
-        # v4.2.1
+      - uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf
+        # v4.2.2
         with:
           path: ~/.pulumi/plugins
           key: python-3.12-pulumi-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
             python-3.12-pulumi-
-      - uses: pulumi/actions@13b8b7177d6fb736766875dac9b78aab07bd785f
-        # v6.0.1
+      - uses: pulumi/actions@3da56e6feff8f5db8b48d3a396bc10ef1f968088
+        # v6.1.0
         with:
           command: up
           stack-name: notdodo/github
