@@ -133,6 +133,7 @@ PublicRepository(
     description="IAMme is a tool designed to visualize the connections between entities within an Okta tenant",
     license_template=License.GPL_3,
     enabled_github_actions=[
+        "aquasecurity/setup-trivy@*",
         "aquasecurity/trivy-action@*",
         "docker/build-push-action@*",
         "docker/login-action@*",
