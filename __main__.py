@@ -1,7 +1,6 @@
 """Pulumi project to manage `notdodo` public repositories"""
 
 from notdodo_github import GitIgnore, License, PublicRepository
-import pulumi
 
 PublicRepository(
     name="github",
