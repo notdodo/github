@@ -1,6 +1,7 @@
 """Pulumi project to manage `notdodo` public repositories"""
 
 from notdodo_github import GitIgnore, License, PublicRepository
+import pulumi
 
 PublicRepository(
     name="github",
@@ -158,5 +159,14 @@ PublicRepository(
         "flattener",
         "json",
         "golang",
+    ],
+)
+
+PublicRepository(
+    name="proxmox",
+    description="Manage my ProxmoxVE node",
+    topics=[
+        "proxmox",
+        "terraform",
     ],
 )
