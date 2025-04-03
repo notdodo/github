@@ -160,3 +160,12 @@ PublicRepository(
         "golang",
     ],
 )
+
+PublicRepository(
+    name="proxmox",
+    description="Manage my ProxmoxVE node",
+    topics=[
+        "proxmox",
+        "terraform",
+    ],
+)
