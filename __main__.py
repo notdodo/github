@@ -165,6 +165,7 @@ PublicRepository(
     name="proxmox",
     description="Manage my ProxmoxVE node",
     enabled_github_actions=[
+        "aquasecurity/setup-trivy@*",
         "aquasecurity/trivy-action@*",
         "hashicorp/setup-terraform@*",
         "terraform-linters/setup-tflint@*",
