@@ -169,6 +169,7 @@ PublicRepository(
         "aquasecurity/trivy-action@*",
         "aws-actions/configure-aws-credentials@*",
         "hashicorp/setup-terraform@*",
+        "mdgreenwald/mozilla-sops-action@d9714e521cbaecdae64a89d2fdd576dd2aa97056",
         "terraform-linters/setup-tflint@*",
     ],
     oidc_claims=[
