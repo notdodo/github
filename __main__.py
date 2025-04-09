@@ -171,6 +171,11 @@ PublicRepository(
         "hashicorp/setup-terraform@*",
         "terraform-linters/setup-tflint@*",
     ],
+    oidc_claims=[
+        "repo",
+        "context",
+        "job_workflow_ref",
+    ],
     topics=[
         "proxmox",
         "terraform",
