@@ -167,6 +167,7 @@ PublicRepository(
     enabled_github_actions=[
         "aquasecurity/setup-trivy@*",
         "aquasecurity/trivy-action@*",
+        "aws-actions/configure-aws-credentials@*",
         "hashicorp/setup-terraform@*",
         "terraform-linters/setup-tflint@*",
     ],
