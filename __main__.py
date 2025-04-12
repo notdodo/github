@@ -154,6 +154,10 @@ PublicRepository(
     name="goflat",
     description="Flatten complex JSON structures to a one-dimensional map (JSON key/value).",
     license_template=License.GPL_3,
+    enabled_github_actions=[
+        "golangci/golangci-lint-action@*",
+        "securego/gosec@master",
+    ],
     topics=[
         "flattener",
         "json",
