@@ -9,6 +9,5 @@ DEFAULT_ALLOWED_GITHUB_ACTIONS = [
     "gitleaks/gitleaks-action@*",
     "notdodo/*",
     "step-security/harden-runner@*",
-    "thollander/actions-comment-pull-request@*",
     "pulumi/*",
 ]
