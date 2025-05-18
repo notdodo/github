@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   python-ci:
-    uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.14
+    uses: notdodo/github-actions/.github/workflows/python-ci.yml@python-ci-v0.0.16
     with:
       poetry-version: latest
       python-version: 3.13
@@ -60,8 +60,8 @@ jobs:
           key: python-3.12-pulumi-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
             python-3.12-pulumi-
-      - uses: pulumi/actions@9519177da243fd32cab35cdbf19cce1ab7472fcc
-        # v6.2.0
+      - uses: pulumi/actions@df5a93ad715135263c732ba288301bd044c383c0
+        # v6.3.0
         with:
           command: up
           stack-name: notdodo/github
