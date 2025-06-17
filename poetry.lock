@@ -458,13 +458,13 @@ files = [
 
 [[package]]
 name = "pulumi"
-version = "3.150.0"
+version = "3.177.0"
 description = "Pulumi's Python SDK"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "pulumi-3.150.0-py3-none-any.whl", hash = "sha256:16e5877a783da33223915cc67d14c8d6d8ed6e1aa2755288d9d4fcbb44a6e6aa"},
+    {file = "pulumi-3.177.0-py3-none-any.whl", hash = "sha256:f5665304b9ad28fe629c9c77e7230cc3d332e9d675b78f180bd2e147e24f77c9"},
 ]
 
 [package.dependencies]
@@ -474,19 +474,18 @@ grpcio = ">=1.66.2,<1.67.0"
 pip = ">=24.3.1,<26"
 protobuf = ">=4.21,<5.0"
 pyyaml = ">=6.0,<7.0"
-semver = ">=2.13,<3.0"
-six = ">=1.12,<2.0"
+semver = ">=3.0,<4.0"
 
 [[package]]
 name = "pulumi-github"
-version = "6.6.0"
+version = "6.7.2"
 description = "A Pulumi package for creating and managing github cloud resources."
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "pulumi_github-6.6.0-py3-none-any.whl", hash = "sha256:70d95238094ebecd1ee2226f30660a85c45476e145d636808e4e97255f3ab93d"},
-    {file = "pulumi_github-6.6.0.tar.gz", hash = "sha256:8983f78b4ecea77ff9ab2bf643faa0e477117f314aae60d2239bf5d5e6208be3"},
+    {file = "pulumi_github-6.7.2-py3-none-any.whl", hash = "sha256:7d14574a2cf9579cc60670f26b898d38b303349c1b15b4ededba479506e84432"},
+    {file = "pulumi_github-6.7.2.tar.gz", hash = "sha256:2c48be297b551319fc5ce93564ae7ede6a46e60a95a8b4ce3a8944b284a57be7"},
 ]
 
 [package.dependencies]
@@ -746,26 +745,14 @@ files = [
 
 [[package]]
 name = "semver"
-version = "2.13.0"
-description = "Python helper for Semantic Versioning (http://semver.org/)"
+version = "3.0.4"
+description = "Python helper for Semantic Versioning (https://semver.org)"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "semver-2.13.0-py2.py3-none-any.whl", hash = "sha256:ced8b23dceb22134307c1b8abfa523da14198793d9787ac838e70e29e77458d4"},
-    {file = "semver-2.13.0.tar.gz", hash = "sha256:fa0fe2722ee1c3f57eac478820c3a5ae2f624af8264cbdf9000c980ff7f75e3f"},
-]
-
-[[package]]
-name = "six"
-version = "1.17.0"
-description = "Python 2 and 3 compatibility utilities"
-optional = false
-python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
-groups = ["main"]
-files = [
-    {file = "six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"},
-    {file = "six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"},
+    {file = "semver-3.0.4-py3-none-any.whl", hash = "sha256:9c824d87ba7f7ab4a1890799cec8596f15c1241cb473404ea1cb0c55e4b04746"},
+    {file = "semver-3.0.4.tar.gz", hash = "sha256:afc7d8c584a5ed0a11033af086e8af226a9c0b206f313e0301f8dd7b6b589602"},
 ]
 
 [[package]]
@@ -810,4 +797,4 @@ typing-extensions = ">=4.12.0"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "1fed1caa5475d48dc3142b0d3f554a468abed64b6795c357ebbb42ef190e0146"
+content-hash = "2c6916ba60ba6753d2cc4b4d11aebd0eb457c4575ecc906537427ddab77ab5d1"
