@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from os import environ
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -162,6 +163,13 @@ class PublicRepository(pulumi.ComponentResource):
             ),
             repository=self.repository.name,
             opts=pulumi.ResourceOptions(parent=self.repository),
+        )
+
+        github.ActionsSecret(
+            f"{self.resource_name}-semgrep-app-token",
+            secret_name="SEMGREP_APP_TOKEN",
+            plaintext_value=environ.get("SEMGREP_APP_TOKEN"),
+            repository=self.repository.name,
         )
 
         github.RepositoryFile(
