@@ -17,10 +17,10 @@ pulumi = "^3.185.0"
 pulumi-github = "^6.7.2"
 
 [tool.poetry.group.dev.dependencies]
-mypy = { extras = ["faster-cache"], version = "^1.16.1" }
+mypy = { extras = ["faster-cache"], version = "^1.17.0" }
 pydantic = "^2.11.7"
 pylint = "^3.3.7"
-ruff = "^0.12.1"
+ruff = "^0.12.4"
 
 [tool.ruff]
 output-format = "github"
