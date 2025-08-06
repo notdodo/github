@@ -30,6 +30,7 @@ PublicRepository(
         "aws-actions/*",
         "mlugg/setup-zig@*",
         "snok/install-poetry@*",
+        "swatinem/rust-cache@*",
         "tj-actions/changed-files@*",
     ],
     oidc_claims=[
@@ -116,6 +117,7 @@ PublicRepository(
         "actions-rust-lang/setup-rust-toolchain@*",
         "aws-actions/configure-aws-credentials@*",
         "mlugg/setup-zig@*",
+        "swatinem/rust-cache@*",
     ],
     gitignore_template=GitIgnore.RUST,
     license_template=License.GPL_3,
