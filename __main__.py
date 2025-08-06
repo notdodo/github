@@ -26,7 +26,7 @@ PublicRepository(
     homepage_url="https://t.me/erfiume_bot",
     license_template=License.GPL_3,
     enabled_github_actions=[
-        "actions-rust-lang/setup-rust-toolchain@",
+        "actions-rust-lang/setup-rust-toolchain@*",
         "aws-actions/*",
         "mlugg/setup-zig@*",
         "snok/install-poetry@*",
@@ -113,7 +113,7 @@ PublicRepository(
     name="bingokta",
     description="Bingo with Okta, but in Colombia",
     enabled_github_actions=[
-        "actions-rust-lang/setup-rust-toolchain@",
+        "actions-rust-lang/setup-rust-toolchain@*",
         "aws-actions/configure-aws-credentials@*",
         "mlugg/setup-zig@*",
     ],
