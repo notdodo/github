@@ -8,6 +8,7 @@ DEFAULT_ALLOWED_GITHUB_ACTIONS = [
     "checkmarx/kics-github-action@*",
     "gitleaks/gitleaks-action@*",
     "notdodo/*",
+    "reviewdog/action-*",
     "step-security/harden-runner@*",
     "pulumi/*",
 ]
