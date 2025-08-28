@@ -1,6 +1,8 @@
 name: Pulumi Up
 on:
-  pull_request:
+  push:
+    branches:
+      - main
 
 concurrency:
   group: ghas-github-pulumi-up-${{ github.ref }}
