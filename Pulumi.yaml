@@ -2,5 +2,6 @@ name: notdodo
 runtime:
   name: python
   options:
-    toolchain: poetry
+    toolchain: uv
+    virtualenv: .venv
 description: Pulumi project to manage `notdodo` public repositories
