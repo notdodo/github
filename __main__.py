@@ -27,7 +27,6 @@ PublicRepository(
     license_template=License.GPL_3,
     enabled_github_actions=[
         "actions-rust-lang/setup-rust-toolchain@*",
-        "aws-actions/*",
         "mlugg/setup-zig@*",
         "snok/install-poetry@*",
         "swatinem/rust-cache@*",
@@ -53,7 +52,6 @@ PublicRepository(
     enabled_github_actions=[
         "aquasecurity/setup-trivy@*",
         "aquasecurity/trivy-action@*",
-        "docker/*",
         "snok/install-poetry@*",
         "tj-actions/changed-files@*",
     ],
@@ -115,7 +113,6 @@ PublicRepository(
     description="Bingo with Okta, but in Colombia",
     enabled_github_actions=[
         "actions-rust-lang/setup-rust-toolchain@*",
-        "aws-actions/configure-aws-credentials@*",
         "mlugg/setup-zig@*",
         "swatinem/rust-cache@*",
     ],
@@ -135,11 +132,6 @@ PublicRepository(
     enabled_github_actions=[
         "aquasecurity/setup-trivy@*",
         "aquasecurity/trivy-action@*",
-        "docker/build-push-action@*",
-        "docker/login-action@*",
-        "docker/metadata-action@*",
-        "docker/setup-buildx-action@*",
-        "docker/setup-qemu-action@*",
         "golangci/golangci-lint-action@*",
         "securego/gosec@*",
     ],
@@ -171,7 +163,6 @@ PublicRepository(
     enabled_github_actions=[
         "aquasecurity/setup-trivy@*",
         "aquasecurity/trivy-action@*",
-        "aws-actions/configure-aws-credentials@*",
         "hashicorp/setup-terraform@*",
         "mdgreenwald/mozilla-sops-action@d9714e521cbaecdae64a89d2fdd576dd2aa97056",
         "terraform-linters/setup-tflint@*",
