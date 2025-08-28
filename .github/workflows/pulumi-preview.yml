@@ -2,10 +2,6 @@ name: Pulumi Preview
 on:
   pull_request:
 
-concurrency:
-  group: ghas-github-pulumi-preview-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   python-ci-pulumi:
     permissions: {}

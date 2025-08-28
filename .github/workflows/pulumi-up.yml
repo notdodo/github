@@ -1,9 +1,8 @@
 name: Pulumi Up
 on:
-  pull_request:
-
-concurrency:
-  group: ghas-github-pulumi-up-${{ github.ref }}
+  push:
+    branches:
+      - main
 
 jobs:
   python-ci-pulumi:
