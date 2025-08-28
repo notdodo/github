@@ -1,26 +1,35 @@
-[tool.poetry]
+[project]
 name = "github"
 version = "0.1.0"
 description = "A project for managing GitHub resources with Pulumi."
-authors = ["Edoardo Rosa <6991986+notdodo@users.noreply.github.com>"]
+authors = [
+    { name = "Edoardo Rosa", email = "6991986+notdodo@users.noreply.github.com" },
+]
+requires-python = ">=3.12"
 readme = "README.md"
 license = "MIT"
 keywords = ["pulumi", "github", "cloud", "infrastructure-as-code"]
-repository = "https://github.com/notdodo/github"
-homepage = "https://github.com/notdodo/github"
-documentation = "https://github.com/notdodo/github/blob/main/README.md"
-package-mode = false
+dependencies = ["pulumi>=3.190.0,<4", "pulumi-github>=6.7.3,<7"]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-pulumi = "^3.190.0"
-pulumi-github = "^6.7.3"
+[project.urls]
+Homepage = "https://github.com/notdodo/github"
+Repository = "https://github.com/notdodo/github"
+Documentation = "https://github.com/notdodo/github/blob/main/README.md"
 
-[tool.poetry.group.dev.dependencies]
-mypy = { extras = ["faster-cache"], version = "^1.17.1" }
-pydantic = "^2.11.7"
-pylint = "^3.3.8"
-ruff = "^0.12.9"
+[dependency-groups]
+dev = [
+    "mypy[faster-cache]>=1.17.1,<2",
+    "pydantic>=2.11.7,<3",
+    "pylint>=3.3.8,<4",
+    "ruff>=0.12.9,<0.13",
+]
+
+[tool.uv]
+package = false
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.ruff]
 output-format = "github"
@@ -55,7 +64,3 @@ namespace_packages = true
 [tool.pylint."MESSAGES CONTROL"]
 persistent = "no"
 disable = ["fixme", "line-too-long"]
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
