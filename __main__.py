@@ -30,7 +30,6 @@ PublicRepository(
         "mlugg/setup-zig@*",
         "snok/install-poetry@*",
         "swatinem/rust-cache@*",
-        "tj-actions/changed-files@*",
     ],
     oidc_claims=[
         "repo",
