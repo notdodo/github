@@ -100,8 +100,8 @@ requires-dist = [
 dev = [
     { name = "mypy", extras = ["faster-cache"], specifier = ">=1.17.1,<2" },
     { name = "pydantic", specifier = ">=2.11.7,<3" },
-    { name = "pylint", specifier = ">=3.3.8,<4" },
-    { name = "ruff", specifier = ">=0.12.9,<0.14" },
+    { name = "pylint", specifier = ">=3.3.8,<5" },
+    { name = "ruff", specifier = ">=0.12.9,<0.15" },
 ]
 
 [[package]]

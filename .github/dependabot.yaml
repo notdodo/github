@@ -5,7 +5,8 @@ updates:
     schedule:
       interval: monthly
       time: "12:00"
-      day: wednesday
+    cooldown:
+      default-days: 4
     groups:
       actions-deps:
         patterns:
@@ -15,7 +16,8 @@ updates:
     schedule:
       interval: monthly
       time: "12:00"
-      day: sunday
+    cooldown:
+      default-days: 4
     groups:
       notdodo-github:
         dependency-type: "production"
