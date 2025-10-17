@@ -3,7 +3,7 @@ Define the list of globally allowed GitHub Actions
 """
 
 DEFAULT_ALLOWED_GITHUB_ACTIONS = [
-    "arduino/setup-task@*",
+    "go-task/setup-task@*",
     "aws-actions/configure-aws-credentials@*",
     "aws-actions/aws-secretsmanager-get-secrets@*",
     "astral-sh/setup-uv@*",
