@@ -20,8 +20,8 @@ Documentation = "https://github.com/notdodo/github/blob/main/README.md"
 dev = [
     "mypy[faster-cache]>=1.17.1,<2",
     "pydantic>=2.11.7,<3",
-    "pylint>=3.3.8,<4",
-    "ruff>=0.12.9,<0.14",
+    "pylint>=3.3.8,<5",
+    "ruff>=0.12.9,<0.15",
 ]
 
 [tool.uv]
