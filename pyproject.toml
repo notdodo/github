@@ -9,7 +9,7 @@ requires-python = ">=3.12"
 readme = "README.md"
 license = "MIT"
 keywords = ["pulumi", "github", "cloud", "infrastructure-as-code"]
-dependencies = ["pulumi>=3.190.0,<4", "pulumi-github>=6.7.3,<7"]
+dependencies = ["pulumi>=3.190.0", "pulumi-github>=6.7.3"]
 
 [project.urls]
 Homepage = "https://github.com/notdodo/github"
@@ -18,10 +18,10 @@ Documentation = "https://github.com/notdodo/github/blob/main/README.md"
 
 [dependency-groups]
 dev = [
-    "mypy[faster-cache]>=1.17.1,<2",
-    "pydantic>=2.11.7,<3",
-    "pylint>=3.3.8,<4",
-    "ruff>=0.12.9,<0.14",
+    "mypy[faster-cache]>=1.17.1",
+    "pydantic>=2.11.7",
+    "pylint>=3.3.8",
+    "ruff>=0.12.9",
 ]
 
 [tool.uv]
