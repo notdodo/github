@@ -100,16 +100,16 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "pulumi", specifier = ">=3.190.0" },
-    { name = "pulumi-github", specifier = ">=6.7.3" },
+    { name = "pulumi", specifier = ">=3.214.0" },
+    { name = "pulumi-github", specifier = ">=6.10.0" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "mypy", extras = ["faster-cache"], specifier = ">=1.17.1" },
-    { name = "pydantic", specifier = ">=2.11.7" },
-    { name = "pylint", specifier = ">=3.3.8" },
-    { name = "ruff", specifier = ">=0.12.9" },
+    { name = "mypy", extras = ["faster-cache"], specifier = ">=1.19.1" },
+    { name = "pydantic", specifier = ">=2.12.5" },
+    { name = "pylint", specifier = ">=4.0.4" },
+    { name = "ruff", specifier = ">=0.14.10" },
 ]
 
 [[package]]
