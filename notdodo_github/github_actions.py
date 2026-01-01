@@ -3,15 +3,16 @@ Define the list of globally allowed GitHub Actions
 """
 
 DEFAULT_ALLOWED_GITHUB_ACTIONS = [
-    "go-task/setup-task@*",
-    "aws-actions/configure-aws-credentials@*",
-    "aws-actions/aws-secretsmanager-get-secrets@*",
     "astral-sh/setup-uv@*",
+    "aws-actions/aws-secretsmanager-get-secrets@*",
+    "aws-actions/configure-aws-credentials@*",
     "checkmarx/kics-github-action@*",
     "docker/*",
     "gitleaks/gitleaks-action@*",
+    "go-task/setup-task@*",
     "notdodo/*",
-    "reviewdog/action-*",
-    "step-security/harden-runner@*",
     "pulumi/*",
+    "reviewdog/action-*",
+    "sigstore/cosign-installer@*",
+    "step-security/harden-runner@*",
 ]
