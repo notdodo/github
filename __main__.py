@@ -160,11 +160,7 @@ PublicRepository(
     name="proxmox",
     description="Manage my ProxmoxVE node",
     enabled_github_actions=[
-        "aquasecurity/setup-trivy@*",
-        "aquasecurity/trivy-action@*",
-        "hashicorp/setup-terraform@*",
-        "mdgreenwald/mozilla-sops-action@d9714e521cbaecdae64a89d2fdd576dd2aa97056",
-        "terraform-linters/setup-tflint@*",
+        "snok/install-poetry@*",
     ],
     oidc_claims=[
         "repo",
