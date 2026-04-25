@@ -39,9 +39,10 @@ PublicRepository(
     topics=[
         "emilia-romagna",
         "livello-fiumi",
-        "telegram",
-        "rust",
+        "marche",
         "pulumi",
+        "rust",
+        "telegram",
     ],
 )
 
@@ -85,6 +86,9 @@ PublicRepository(
 PublicRepository(
     name="sparktrail",
     description="Query AWS CloudTrail using Spark (python) to perform analysis",
+    enabled_github_actions=[
+        "snok/install-poetry@*",
+    ],
     license_template=License.GPL_3,
     topics=[
         "aws",
