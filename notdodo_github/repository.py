@@ -70,7 +70,6 @@ class PublicRepository(pulumi.ComponentResource):
             description=description,
             gitignore_template=gitignore_template,
             has_discussions=False,
-            has_downloads=False,
             has_issues=True,
             has_projects=False,
             has_wiki=False,
@@ -87,8 +86,16 @@ class PublicRepository(pulumi.ComponentResource):
             squash_merge_commit_message="BLANK",
             squash_merge_commit_title="PR_TITLE",
             topics=topics,
-            vulnerability_alerts=True,
             web_commit_signoff_required=True,
+            opts=pulumi.ResourceOptions.merge(
+                repo_opts, pulumi.ResourceOptions(parent=self)
+            ),
+        )
+
+        github.RepositoryVulnerabilityAlerts(
+            f"{self.resource_name}-vulnerability-alerts",
+            enabled=True,
+            repository=self.repository.name,
             opts=pulumi.ResourceOptions.merge(
                 repo_opts, pulumi.ResourceOptions(parent=self)
             ),
