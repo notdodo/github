@@ -18,10 +18,10 @@ Documentation = "https://github.com/notdodo/github/blob/main/README.md"
 
 [dependency-groups]
 dev = [
-    "mypy[faster-cache]>=1.20.0",
-    "pydantic>=2.12.5",
+    "mypy[faster-cache]>=1.20.2",
+    "pydantic>=2.13.3",
     "pylint>=4.0.5",
-    "ruff>=0.15.9",
+    "ruff>=0.15.11",
 ]
 
 [tool.uv]
