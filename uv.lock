@@ -143,7 +143,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "pulumi", specifier = ">=3.247.0" },
+    { name = "pulumi", specifier = ">=3.243.0" },
     { name = "pulumi-github", specifier = ">=6.14.0" },
 ]
 
