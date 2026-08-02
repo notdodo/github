@@ -175,7 +175,7 @@ class PublicRepository(pulumi.ComponentResource):
         github.ActionsSecret(
             f"{self.resource_name}-semgrep-app-token",
             secret_name="SEMGREP_APP_TOKEN",
-            plaintext_value=environ.get("SEMGREP_APP_TOKEN"),
+            value=environ.get("SEMGREP_APP_TOKEN"),
             repository=self.repository.name,
         )
 
