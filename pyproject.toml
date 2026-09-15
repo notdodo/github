@@ -38,7 +38,17 @@ output-format = "github"
 fixable = ["ALL"]
 unfixable = []
 select = ["ALL"]
-ignore = ["D2", "D4", "ANN", "COM812", "ISC001", "ERA001", "S106"]
+ignore = [
+    "CPY001",
+    "D2",
+    "D4",
+    "ANN",
+    "COM812",
+    "ISC001",
+    "ERA001",
+    "S106",
+    "PLR0917",
+]
 
 [tool.ruff.format]
 docstring-code-format = true
