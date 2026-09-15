@@ -70,6 +70,21 @@ PublicRepository(
     ],
 )
 
+PublicRepository(
+    name="nuvola",
+    topics=[
+        "aws",
+        "cloud",
+        "cloudsecurity",
+        "devops",
+        "devsecops",
+        "golang",
+        "neo4j",
+        "redteaming",
+    ],
+    enabled_github_actions=["securego/gosec@*", "golangci/golangci-lint-action@*"],
+)
+
 
 PublicRepository(
     name="pulumi-k8s",
@@ -151,7 +166,7 @@ PublicRepository(
     license_template=License.GPL_3,
     enabled_github_actions=[
         "golangci/golangci-lint-action@*",
-        "securego/gosec@master",
+        "securego/gosec@*",
     ],
     topics=[
         "flattener",

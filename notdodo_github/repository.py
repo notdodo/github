@@ -43,7 +43,6 @@ class PublicRepository(pulumi.ComponentResource):
         license_template: License | None = None,
         oidc_claims: list[str] | None = None,
         topics: list[str] | None = None,
-        repo_opts: pulumi.ResourceOptions | None = None,
         default_branch: str = "main",
         opts: pulumi.ResourceOptions | None = None,
     ):
@@ -88,7 +87,7 @@ class PublicRepository(pulumi.ComponentResource):
             topics=topics,
             web_commit_signoff_required=True,
             opts=pulumi.ResourceOptions.merge(
-                repo_opts, pulumi.ResourceOptions(parent=self)
+                opts, pulumi.ResourceOptions(parent=self)
             ),
         )
 
@@ -97,7 +96,7 @@ class PublicRepository(pulumi.ComponentResource):
             enabled=True,
             repository=self.repository.name,
             opts=pulumi.ResourceOptions.merge(
-                repo_opts, pulumi.ResourceOptions(parent=self)
+                opts, pulumi.ResourceOptions(parent=self)
             ),
         )
 
@@ -110,7 +109,9 @@ class PublicRepository(pulumi.ComponentResource):
             f"{self.resource_name}-dependabot-security",
             enabled=True,
             repository=self.repository.name,
-            opts=pulumi.ResourceOptions(parent=self.repository),
+            opts=pulumi.ResourceOptions.merge(
+                opts, pulumi.ResourceOptions(parent=self.repository)
+            ),
         )
 
         self.register_outputs(
